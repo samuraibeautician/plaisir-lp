@@ -200,6 +200,7 @@ const TYPES={
     menu:["coupe","spa","soin"]}
 };
 const MENU={
+  resetter:{jp:"リセッターカット",en:"resetter",pr:"ご相談"},
   coupe:{jp:"カット",en:"coupe",pr:"¥7,150〜"},
   couleur:{jp:"カラー",en:"couleur",pr:"¥8,800〜"},
   perm:{jp:"パーマ",en:"permanente",pr:"ご相談"},
@@ -261,8 +262,9 @@ function back(){
 function buildMenu(type){
   const out=[]; const banned=careCode?CONTRA[careCode]:null;
   if(careCode) out.push(careCode);                 // 悩み由来の一手を先頭に
+  out.push("resetter");                            // plaisirの署名カット（全タイプ）
   type.menu.forEach(c=>{ if(c!==careCode && c!==banned && !out.includes(c)) out.push(c); });
-  return out.slice(0,3);
+  return out.slice(0,4);
 }
 function renderResult(){
   let best="soft",bv=-1;
