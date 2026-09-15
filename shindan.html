@@ -1,0 +1,285 @@
+<title>plaisir 似合わせ診断</title>
+<meta name="description" content="plaisir（堺市白鷺の美容室）の似合わせ診断。5つの問いから、あなたに似合うを提案し、LINEで結果を受け取れる無料診断プロトタイプ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* plaisir「空の青」の世界に合わせた単一世界デザイン（明るい朝〜昼の空の青） */
+:root{
+  --sky-0:#cdeef9; --sky-1:#a6def0; --sky-2:#8fd2e8; --sky-3:#56b2d6; --sky-4:#2e94b6;
+  --ink:#05314a; --ink-soft:#1f566e; --line-blue:#085a7c;
+  --glow:#e0f8ff; --deep:#052a3b; --deep-2:#0a3a4f;
+  --glass:rgba(5,34,46,.82); --glass-line:rgba(224,248,255,.16); --on-deep:#ecfcfe; --on-deep-muted:#8fc4ce;
+  --serif:"Shippori Mincho",serif; --deco:"Cormorant Garamond",serif; --sans:"Zen Kaku Gothic New",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  font-family:var(--sans);color:var(--ink);line-height:1.85;font-weight:300;
+  background:linear-gradient(180deg,var(--sky-0) 0%,var(--sky-1) 26%,var(--sky-2) 52%,var(--sky-3) 82%,var(--sky-4) 100%) fixed;
+  min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
+/* 光の粒子・花の気配（面を無地にしない：DNA『埋め尽くし』） */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(60% 45% at 50% -8%,rgba(224,248,255,.55),transparent 70%),
+    radial-gradient(30% 22% at 82% 12%,rgba(224,248,255,.30),transparent 70%),
+    radial-gradient(26% 20% at 12% 30%,rgba(224,248,255,.22),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:640px;margin:0 auto;padding-inline:22px;padding-block:0}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.4;text-wrap:balance;margin:0}
+.deco{font-family:var(--deco);font-style:italic;font-weight:300;letter-spacing:.02em}
+p{margin:0}
+.center{text-align:center}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+[hidden]{display:none!important}
+
+/* header brand */
+.brand{padding-block:34px 0;text-align:center}
+.brand .mark{font-family:var(--deco);font-size:13px;letter-spacing:.34em;color:var(--line-blue);text-transform:uppercase}
+.brand .mark small{display:block;font-size:10px;letter-spacing:.28em;color:var(--ink-soft);margin-top:4px}
+
+/* screens */
+.screen{padding-block:30px 56px;animation:rise .5s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.screen{animation:none}}
+
+/* intro */
+.intro{padding-block:22px 40px}
+.intro .lead-en{font-family:var(--deco);font-style:italic;font-size:19px;color:var(--line-blue);margin-bottom:10px}
+.intro h1{font-size:clamp(27px,6.4vw,38px)}
+.intro h1 b{font-weight:500;color:var(--line-blue)}
+.intro .sub{margin:20px auto 0;max-width:34ch;color:var(--ink-soft);font-size:15px}
+.intro .note{margin-top:12px;font-size:12px;color:var(--ink-soft);opacity:.8}
+.start{margin-top:30px;display:inline-flex;align-items:center;gap:10px;
+  background:var(--glass);color:var(--on-deep);padding:15px 34px;border-radius:40px;
+  font-size:15px;letter-spacing:.06em;box-shadow:0 10px 30px rgba(5,42,59,.28);
+  backdrop-filter:blur(6px);border:1px solid var(--glass-line);transition:transform .2s,box-shadow .2s}
+.start:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(5,42,59,.34)}
+.start .ar{font-family:var(--deco)}
+.steps-hint{margin-top:26px;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;font-size:11.5px;color:var(--ink-soft)}
+.steps-hint span{display:flex;align-items:center;gap:6px}
+.steps-hint i{font-family:var(--deco);font-style:italic;color:var(--line-blue);font-size:15px}
+
+/* progress */
+.prog{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+.prog .bar{flex:1;height:2px;background:rgba(5,49,74,.16);border-radius:2px;overflow:hidden}
+.prog .fill{height:100%;background:var(--line-blue);width:0;transition:width .45s ease}
+.prog .cnt{font-family:var(--deco);font-style:italic;font-size:14px;color:var(--line-blue);min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+
+/* question */
+.q .kicker{font-family:var(--deco);font-style:italic;font-size:15px;color:var(--line-blue);margin-bottom:8px}
+.q h2{font-size:clamp(21px,4.6vw,27px);margin-bottom:6px}
+.q .qsub{color:var(--ink-soft);font-size:13.5px;margin-bottom:22px}
+.opts{display:flex;flex-direction:column;gap:11px}
+.opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;
+  background:rgba(255,255,255,.34);border:1px solid rgba(255,255,255,.5);border-radius:15px;
+  padding:16px 18px;color:var(--ink);transition:transform .16s,background .16s,border-color .16s;
+  box-shadow:0 4px 16px rgba(5,42,59,.06)}
+.opt:hover,.opt:focus-visible{background:rgba(255,255,255,.6);transform:translateX(3px);border-color:var(--line-blue);outline:none}
+.opt .n{font-family:var(--deco);font-style:italic;font-size:17px;color:var(--line-blue);flex:0 0 auto;width:1.4em}
+.opt .t{font-size:15.5px;font-weight:400}
+.opt .t small{display:block;font-size:12px;color:var(--ink-soft);font-weight:300;margin-top:1px}
+.back{margin-top:22px;font-size:12.5px;color:var(--ink-soft);letter-spacing:.04em}
+.back:hover{color:var(--line-blue)}
+
+/* result */
+.result{padding-block:14px 40px}
+.result .top{text-align:center;margin-bottom:26px}
+.result .top .en{font-family:var(--deco);font-style:italic;font-size:15px;color:var(--line-blue)}
+.result .top .type{font-size:clamp(26px,6.6vw,36px);margin:6px 0 4px}
+.result .top .oneline{color:var(--ink-soft);font-size:14.5px;max-width:30ch;margin:8px auto 0}
+.rcard{background:var(--glass);color:var(--on-deep);border:1px solid var(--glass-line);border-radius:20px;
+  padding:26px 24px;backdrop-filter:blur(8px);box-shadow:0 18px 44px rgba(5,42,59,.3)}
+.rcard h3{color:var(--on-deep);font-size:17px;margin-bottom:10px;display:flex;align-items:baseline;gap:10px}
+.rcard h3 .en{font-family:var(--deco);font-style:italic;font-size:13px;color:var(--on-deep-muted)}
+.rcard p{color:var(--on-deep-muted);font-size:14px;line-height:1.9}
+.rcard .block+.block{margin-top:22px;padding-top:22px;border-top:1px solid var(--glass-line)}
+.rmenu{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.rmenu .m{display:flex;align-items:baseline;gap:12px;font-size:14px}
+.rmenu .m .jp{color:var(--on-deep);font-weight:400;min-width:6.5em}
+.rmenu .m .en{font-family:var(--deco);font-style:italic;color:var(--on-deep-muted);font-size:12px;flex:1}
+.rmenu .m .pr{font-variant-numeric:tabular-nums;color:var(--glow);font-size:13px}
+
+/* CTA */
+.cta{margin-top:24px;text-align:center}
+.cta .h{font-family:var(--serif);font-size:19px;margin-bottom:6px}
+.cta .s{color:var(--ink-soft);font-size:13.5px;margin-bottom:18px;max-width:30ch;margin-inline:auto}
+.btns{display:flex;flex-direction:column;gap:11px;max-width:340px;margin:0 auto}
+.b{display:flex;align-items:center;justify-content:center;gap:10px;padding:15px;border-radius:14px;
+  font-size:14.5px;letter-spacing:.04em;text-decoration:none;transition:transform .18s,box-shadow .18s}
+.b:hover{transform:translateY(-2px)}
+.b-line{background:#06c755;color:#fff;box-shadow:0 8px 22px rgba(6,199,85,.3)}
+.b-book{background:var(--glass);color:var(--on-deep);border:1px solid var(--glass-line)}
+.b-sub{font-size:11px;opacity:.85;font-weight:300}
+.retry{margin-top:20px;font-size:12.5px;color:var(--ink-soft)}
+.retry:hover{color:var(--line-blue)}
+.disc{margin-top:26px;font-size:11px;color:var(--ink-soft);opacity:.75;line-height:1.7;text-align:center;max-width:36ch;margin-inline:auto}
+
+footer{padding-block:20px 40px;text-align:center;font-size:11px;color:var(--ink-soft)}
+footer .en{font-family:var(--deco);font-style:italic;letter-spacing:.06em}
+.draft{position:fixed;top:10px;right:10px;z-index:5;font-size:10px;letter-spacing:.08em;
+  background:var(--glass);color:var(--on-deep-muted);padding:4px 10px;border-radius:20px;border:1px solid var(--glass-line)}
+</style>
+
+<div class="wrap">
+  <div class="brand"><div class="mark">plaisir<small>hair &amp; flower ・ 堺市 白鷺</small></div></div>
+
+  <!-- INTRO -->
+  <section class="screen intro center" id="intro">
+    <p class="lead-en">Find what suits you.</p>
+    <h1>あなたに<b>似合う</b>を、<br>見つけにいく。</h1>
+    <p class="sub">似合うの半分は、暮らしのほうにあります。5つの問いに答えると、plaisir からあなたへの提案が届きます。</p>
+    <p class="note">所要 約1分 ・ 無料 ・ 結果は LINE で受け取れます</p>
+    <button class="start" id="startBtn">診断をはじめる <span class="ar">→</span></button>
+    <div class="steps-hint">
+      <span><i>i</i> 5つの問い</span><span><i>ii</i> 似合わせタイプ</span><span><i>iii</i> plaisirの提案</span>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="screen q" id="quiz" hidden>
+    <div class="prog"><div class="bar"><div class="fill" id="fill"></div></div><div class="cnt" id="cnt">1 / 5</div></div>
+    <p class="kicker" id="qkick">01</p>
+    <h2 id="qtitle"></h2>
+    <p class="qsub" id="qsub"></p>
+    <div class="opts" id="opts"></div>
+    <button class="back" id="backBtn" hidden>← ひとつ戻る</button>
+  </section>
+
+  <!-- RESULT -->
+  <section class="screen result" id="result" hidden>
+    <div class="top">
+      <p class="en" id="rEn"></p>
+      <h2 class="type" id="rType"></h2>
+      <p class="oneline" id="rOne"></p>
+    </div>
+    <div class="rcard">
+      <div class="block">
+        <h3>plaisir がすること <span class="en">what we do</span></h3>
+        <p id="rDo"></p>
+      </div>
+      <div class="block">
+        <h3>おすすめの引き出し <span class="en">menu</span></h3>
+        <div class="rmenu" id="rMenu"></div>
+      </div>
+    </div>
+    <div class="cta">
+      <p class="h">結果を保存して、続きはお店で。</p>
+      <p class="s">LINE で結果を受け取ると、来店時にそのままご相談いただけます。</p>
+      <div class="btns">
+        <a class="b b-line" href="https://page.line.me/067myonr?openQrModal=true" target="_blank" rel="noopener">
+          <span>LINEで結果を受け取る<span class="b-sub">　カウンセリングを先取り</span></span>
+        </a>
+        <a class="b b-book" href="https://appt.salondenet.jp/index.php?corpstr=plaisir&get=6a5e647258646c362e23665b6b6e556d5a6a715e686b3669766c6a6266" target="_blank" rel="noopener">
+          そのままご予約する
+        </a>
+      </div>
+      <button class="retry" id="retryBtn">もう一度診断する</button>
+      <p class="disc">この診断は目安です。実際の「似合う」は、来店時のカウンセリングで髪質・骨格・くせ・毛量を直接みてご提案します。</p>
+    </div>
+  </section>
+
+  <footer><span class="en">plaisir</span> ・ ドライカット ・ 白鷺駅 徒歩1分 ・ 9:00–20:00（火曜定休）</footer>
+</div>
+
+<script>
+"use strict";
+/* ── 診断データ（v1ドラフト＝LPの「03 似合わせ」から起こした。要・本人監修） ──
+   各選択肢は4つの似合わせタイプへ加点。合計最大のタイプを結果に。 */
+const TYPES={
+  soft:{en:"Soft & Airy",name:"やわらかな余白",one:"軽さと抜け感で、力を抜いた美しさを。",
+    do:"点で切るドライカットで1本1本にわずかなズレを作り、やわらかく動く軽さを引き出します。広がりやくせは、負担をおさえた縮毛矯正・髪質改善でおさめてから軽さを乗せます。",
+    menu:["coupe","soin","lissage"]},
+  poised:{en:"Poised Line",name:"凛とした横顔",one:"骨格を活かす形と、印象を設計する色。",
+    do:"骨格をキレイに見せるショート〜ミディアムを得意としています。輪郭に沿う線と、肌色に似合う色設計で、凛とした横顔をつくります。",
+    menu:["coupe","couleur"]},
+  natural:{en:"Bare Natural",name:"素肌のようなナチュラル",one:"素材を健やかに、飾りすぎない美しさ。",
+    do:"抗酸化水を使い髪を健やかに保つホリスティックカラーと髪質改善で、ツヤと手ざわりを整えます。作り込みすぎない、素肌のようなナチュラルへ。",
+    menu:["couleur","soin","coupe"]},
+  calm:{en:"Quiet Ease",name:"ほどく時間",one:"扱いやすさと、静かな休息を軸に。",
+    do:"お手入れが楽になる形とケアを優先し、乾かし方までお伝えします。頭皮からほぐすヘッドスパを添えて、髪の土台から整える静かな時間を。",
+    menu:["coupe","spa","soin"]}
+};
+const MENU={
+  coupe:{jp:"カット",en:"coupe",pr:"¥7,150〜"},
+  couleur:{jp:"カラー",en:"couleur",pr:"¥8,800〜"},
+  perm:{jp:"パーマ",en:"permanente",pr:"ご相談"},
+  lissage:{jp:"縮毛矯正",en:"lissage",pr:"¥18,150〜"},
+  soin:{jp:"髪質改善",en:"soin",pr:"¥13,200〜"},
+  spa:{jp:"ヘッドスパ",en:"spa",pr:"¥4,400〜"}
+};
+/* 悩み→臨床的に正しい一手（メニューの先頭に置く）。パーマと縮毛矯正は逆方向＝同時に出さない */
+const CONTRA={perm:"lissage",lissage:"perm"};
+const QUESTIONS=[
+  {t:"なりたいのは、どんな印象ですか。",s:"いちばん近いものを、ひとつ。",
+   o:[["やわらかく、軽やかに",{soft:2,natural:1}],["凛と、きちんと",{poised:2}],["素肌のようにナチュラル",{natural:2,calm:1}],["扱いやすく、気楽に",{calm:2,soft:1}]]},
+  {t:"いま、髪で気になることは。",s:"暮らしの中で、いちばん感じるもの。",
+   o:[["くせ・広がり",{soft:2,poised:1},"lissage"],["ダメージ・パサつき",{natural:2,soft:1},"soin"],["ボリュームがない・ぺたんこ",{poised:2,calm:1},"perm"],["特にない／ただ変えたい",{calm:2,poised:1},null]]},
+  {t:"髪の長さ、どうしたいですか。",s:"今の気分でどうぞ。",
+   o:[["ショートにしたい",{poised:2,soft:1}],["ミディアムで似合わせたい",{soft:2,natural:1}],["長さはキープしたい",{natural:2,calm:1}],["おまかせしたい",{calm:2}]]},
+  {t:"お手入れにかけられる時間は。",s:"朝の、あなたの時間。",
+   o:[["最小限にしたい",{calm:2,poised:1}],["ほどほどに",{soft:1,natural:1,poised:1}],["しっかりかけられる",{natural:2,poised:1}]]},
+  {t:"顔まわりで、気になるところは。",s:"わからなければ「おまかせ」で。",
+   o:[["丸み・ふっくら",{poised:2,soft:1}],["エラ・輪郭",{soft:2,poised:1}],["面長・縦の印象",{natural:1,calm:1,soft:1}],["わからない／おまかせ",{calm:1,natural:1}]]}
+];
+
+const el=id=>document.getElementById(id);
+let idx=0; let careCode=null; const scores={soft:0,poised:0,natural:0,calm:0}; const history=[];
+
+function show(id){["intro","quiz","result"].forEach(s=>el(s).hidden=(s!==id));window.scrollTo({top:0,behavior:"smooth"});}
+function renderQ(){
+  const q=QUESTIONS[idx];
+  el("cnt").textContent=(idx+1)+" / "+QUESTIONS.length;
+  el("fill").style.width=((idx)/QUESTIONS.length*100)+"%";
+  el("qkick").textContent=String(idx+1).padStart(2,"0");
+  el("qtitle").textContent=q.t; el("qsub").textContent=q.s;
+  const box=el("opts"); box.innerHTML="";
+  q.o.forEach((opt,i)=>{
+    const b=document.createElement("button");
+    b.className="opt";
+    b.innerHTML='<span class="n">'+(i+1)+'</span><span class="t">'+opt[0]+'</span>';
+    b.onclick=()=>choose(opt);
+    box.appendChild(b);
+  });
+  el("backBtn").hidden=(idx===0);
+}
+function choose(opt){
+  const delta=opt[1];
+  if(opt.length>2) careCode=opt[2];   // 悩みの質問だけが care を持つ
+  history.push(delta);
+  for(const k in delta) scores[k]+=delta[k];
+  idx++;
+  if(idx>=QUESTIONS.length){el("fill").style.width="100%";renderResult();show("result");}
+  else renderQ();
+}
+function back(){
+  if(idx===0)return;
+  idx--; const last=history.pop();
+  for(const k in last) scores[k]-=last[k];
+  if(idx<=1) careCode=null;   // 悩み(Q2)まで戻ったら care を白紙に
+  renderQ(); show("quiz");
+}
+function buildMenu(type){
+  const out=[]; const banned=careCode?CONTRA[careCode]:null;
+  if(careCode) out.push(careCode);                 // 悩み由来の一手を先頭に
+  type.menu.forEach(c=>{ if(c!==careCode && c!==banned && !out.includes(c)) out.push(c); });
+  return out.slice(0,3);
+}
+function renderResult(){
+  let best="soft",bv=-1;
+  for(const k in scores){ if(scores[k]>bv){bv=scores[k];best=k;} }
+  const t=TYPES[best];
+  el("rEn").textContent=t.en;
+  el("rType").textContent=t.name;
+  el("rOne").textContent=t.one;
+  el("rDo").textContent=t.do;
+  const m=el("rMenu"); m.innerHTML="";
+  buildMenu(t).forEach(code=>{const d=MENU[code];const row=document.createElement("div");row.className="m";
+    const price=d.pr.indexOf("¥")>=0? d.pr+"（税込）":d.pr;
+    row.innerHTML='<span class="jp">'+d.jp+'</span><span class="en">'+d.en+'</span><span class="pr">'+price+'</span>';m.appendChild(row);});
+}
+function reset(){idx=0;careCode=null;for(const k in scores)scores[k]=0;history.length=0;renderQ();show("quiz");}
+
+el("startBtn").onclick=()=>{renderQ();show("quiz");};
+el("backBtn").onclick=back;
+el("retryBtn").onclick=reset;
+</script>
