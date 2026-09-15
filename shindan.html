@@ -1,3 +1,10 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
 <title>plaisir 似合わせ診断</title>
 <meta name="description" content="plaisir（堺市白鷺の美容室）の似合わせ診断。5つの問いから、あなたに似合うを提案し、LINEで結果を受け取れる無料診断プロトタイプ。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +25,6 @@ body{
   font-family:var(--sans);color:var(--ink);line-height:1.85;font-weight:300;
   background:linear-gradient(180deg,var(--sky-0) 0%,var(--sky-1) 26%,var(--sky-2) 52%,var(--sky-3) 82%,var(--sky-4) 100%) fixed;
   min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
-/* 光の粒子・花の気配（面を無地にしない：DNA『埋め尽くし』） */
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
   background:
     radial-gradient(60% 45% at 50% -8%,rgba(224,248,255,.55),transparent 70%),
@@ -32,17 +38,14 @@ p{margin:0}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 [hidden]{display:none!important}
 
-/* header brand */
 .brand{padding-block:34px 0;text-align:center}
 .brand .mark{font-family:var(--deco);font-size:13px;letter-spacing:.34em;color:var(--line-blue);text-transform:uppercase}
 .brand .mark small{display:block;font-size:10px;letter-spacing:.28em;color:var(--ink-soft);margin-top:4px}
 
-/* screens */
 .screen{padding-block:30px 56px;animation:rise .5s ease both}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.screen{animation:none}}
 
-/* intro */
 .intro{padding-block:22px 40px}
 .intro .lead-en{font-family:var(--deco);font-style:italic;font-size:19px;color:var(--line-blue);margin-bottom:10px}
 .intro h1{font-size:clamp(27px,6.4vw,38px)}
@@ -59,13 +62,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .steps-hint span{display:flex;align-items:center;gap:6px}
 .steps-hint i{font-family:var(--deco);font-style:italic;color:var(--line-blue);font-size:15px}
 
-/* progress */
 .prog{display:flex;align-items:center;gap:12px;margin-bottom:26px}
 .prog .bar{flex:1;height:2px;background:rgba(5,49,74,.16);border-radius:2px;overflow:hidden}
 .prog .fill{height:100%;background:var(--line-blue);width:0;transition:width .45s ease}
 .prog .cnt{font-family:var(--deco);font-style:italic;font-size:14px;color:var(--line-blue);min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
 
-/* question */
 .q .kicker{font-family:var(--deco);font-style:italic;font-size:15px;color:var(--line-blue);margin-bottom:8px}
 .q h2{font-size:clamp(21px,4.6vw,27px);margin-bottom:6px}
 .q .qsub{color:var(--ink-soft);font-size:13.5px;margin-bottom:22px}
@@ -81,7 +82,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .back{margin-top:22px;font-size:12.5px;color:var(--ink-soft);letter-spacing:.04em}
 .back:hover{color:var(--line-blue)}
 
-/* result */
 .result{padding-block:14px 40px}
 .result .top{text-align:center;margin-bottom:26px}
 .result .top .en{font-family:var(--deco);font-style:italic;font-size:15px;color:var(--line-blue)}
@@ -98,8 +98,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .rmenu .m .jp{color:var(--on-deep);font-weight:400;min-width:6.5em}
 .rmenu .m .en{font-family:var(--deco);font-style:italic;color:var(--on-deep-muted);font-size:12px;flex:1}
 .rmenu .m .pr{font-variant-numeric:tabular-nums;color:var(--glow);font-size:13px}
+.entry-lead{color:var(--on-deep) !important;font-size:13px;margin-bottom:4px}
+.full-lead{color:var(--on-deep-muted) !important;font-size:13px;margin-bottom:4px}
+.full-note{margin-top:12px;font-style:italic;font-size:12.5px;color:var(--on-deep-muted) !important}
 
-/* CTA */
 .cta{margin-top:24px;text-align:center}
 .cta .h{font-family:var(--serif);font-size:19px;margin-bottom:6px}
 .cta .s{color:var(--ink-soft);font-size:13.5px;margin-bottom:18px;max-width:30ch;margin-inline:auto}
@@ -120,6 +122,7 @@ footer .en{font-family:var(--deco);font-style:italic;letter-spacing:.06em}
   background:var(--glass);color:var(--on-deep-muted);padding:4px 10px;border-radius:20px;border:1px solid var(--glass-line)}
 </style>
 
+<div class="draft">DRAFT v3 · 5タイプ/新質問は要監修</div>
 <div class="wrap">
   <div class="brand"><div class="mark">plaisir<small>hair &amp; flower ・ 堺市 白鷺</small></div></div>
 
@@ -158,8 +161,15 @@ footer .en{font-family:var(--deco);font-style:italic;letter-spacing:.06em}
         <p id="rDo"></p>
       </div>
       <div class="block">
-        <h3>おすすめの引き出し <span class="en">menu</span></h3>
-        <div class="rmenu" id="rMenu"></div>
+        <h3>まずは、ここから <span class="en">first step</span></h3>
+        <p class="entry-lead">気負わず始められる、最初の一歩。</p>
+        <div class="rmenu" id="rEntry"></div>
+      </div>
+      <div class="block">
+        <h3>本気で似合わせるなら <span class="en">full course</span></h3>
+        <p class="full-lead">あなたに本当に似合わせる、plaisir のフルコース提案。</p>
+        <div class="rmenu" id="rFull"></div>
+        <p class="full-note">最適な組み合わせと順番は、カウンセリングで一緒に組み立てます。</p>
       </div>
     </div>
     <div class="cta">
@@ -183,21 +193,26 @@ footer .en{font-family:var(--deco);font-style:italic;letter-spacing:.06em}
 
 <script>
 "use strict";
-/* ── 診断データ（v1ドラフト＝LPの「03 似合わせ」から起こした。要・本人監修） ──
-   各選択肢は4つの似合わせタイプへ加点。合計最大のタイプを結果に。 */
+/* ── 診断データ（v3＝2方向のマージ） ──
+   ・臨床ロジック：リセッターカット署名／悩み→一手／パーマと縮毛矯正の相反排他
+   ・本人監修：5タイプ化（華やぐ新設・ほどく→気楽にきれい）／質問はお客様が答えられる形／2段構え／ホリスティック修正
+   5つ目「華やぐ」の提案文と4つ目の呼び名は要・本人監修。各選択肢は5タイプへ加点し合計最大を結果に。 */
 const TYPES={
   soft:{en:"Soft & Airy",name:"やわらかな余白",one:"軽さと抜け感で、力を抜いた美しさを。",
     do:"点で切るドライカットで1本1本にわずかなズレを作り、やわらかく動く軽さを引き出します。広がりやくせは、負担をおさえた縮毛矯正・髪質改善でおさめてから軽さを乗せます。",
-    menu:["coupe","soin","lissage"]},
+    full:["coupe","soin","lissage"]},
   poised:{en:"Poised Line",name:"凛とした横顔",one:"骨格を活かす形と、印象を設計する色。",
     do:"骨格をキレイに見せるショート〜ミディアムを得意としています。輪郭に沿う線と、肌色に似合う色設計で、凛とした横顔をつくります。",
-    menu:["coupe","couleur"]},
+    full:["coupe","couleur"]},
   natural:{en:"Bare Natural",name:"素肌のようなナチュラル",one:"素材を健やかに、飾りすぎない美しさ。",
-    do:"抗酸化水を使い髪を健やかに保つホリスティックカラーと髪質改善で、ツヤと手ざわりを整えます。作り込みすぎない、素肌のようなナチュラルへ。",
-    menu:["couleur","soin","coupe"]},
-  calm:{en:"Quiet Ease",name:"ほどく時間",one:"扱いやすさと、静かな休息を軸に。",
-    do:"お手入れが楽になる形とケアを優先し、乾かし方までお伝えします。頭皮からほぐすヘッドスパを添えて、髪の土台から整える静かな時間を。",
-    menu:["coupe","spa","soin"]}
+    do:"抗酸化水をはじめ、持てる手段のすべてを使って髪を健やかに、美しく保ちます。ホリスティックカラーと髪質改善でツヤと手ざわりを整え、作り込みすぎない、素肌のようなナチュラルへ。",
+    full:["couleur","soin","coupe"]},
+  easy:{en:"Easy & Pretty",name:"気楽にきれい",one:"手間をかけず、気負わず続くきれいを。",
+    do:"お手入れが楽になる形とケアを優先し、乾かし方までお伝えします。頭皮からほぐすヘッドスパを添えて、気負わず続くきれいへ。",
+    full:["coupe","spa","soin"]},
+  radiant:{en:"Radiant",name:"華やぐ",one:"いつもの自分も、特別な日も、ひと目で華やぐように。",
+    do:"映える色やデザイン、質感の作り込みで、目を引く仕上がりへ。特別な日も、日常のなかの華やぎも。※この提案文は要監修（お店の得意技に合わせて直します）",
+    full:["couleur","soin","coupe"]}
 };
 const MENU={
   resetter:{jp:"リセッターカット",en:"resetter",pr:"ご相談"},
@@ -208,23 +223,41 @@ const MENU={
   soin:{jp:"髪質改善",en:"soin",pr:"¥13,200〜"},
   spa:{jp:"ヘッドスパ",en:"spa",pr:"¥4,400〜"}
 };
-/* 悩み→臨床的に正しい一手（メニューの先頭に置く）。パーマと縮毛矯正は逆方向＝同時に出さない */
+/* パーマと縮毛矯正は逆方向＝同じ提案に同時に出さない */
 const CONTRA={perm:"lissage",lissage:"perm"};
+/* お客様が自分で答えられる問いだけ（気分・なりたい印象・暮らし・悩み・色）。
+   髪質・骨格の見立ては来店時にプロが直接みる前提で、自己診断の質問からは外した。
+   Q2「気になること」だけが care（悩み由来の一手）を持つ。 */
 const QUESTIONS=[
   {t:"なりたいのは、どんな印象ですか。",s:"いちばん近いものを、ひとつ。",
-   o:[["やわらかく、軽やかに",{soft:2,natural:1}],["凛と、きちんと",{poised:2}],["素肌のようにナチュラル",{natural:2,calm:1}],["扱いやすく、気楽に",{calm:2,soft:1}]]},
-  {t:"いま、髪で気になることは。",s:"暮らしの中で、いちばん感じるもの。",
-   o:[["くせ・広がり",{soft:2,poised:1},"lissage"],["ダメージ・パサつき",{natural:2,soft:1},"soin"],["ボリュームがない・ぺたんこ",{poised:2,calm:1},"perm"],["特にない／ただ変えたい",{calm:2,poised:1},null]]},
-  {t:"髪の長さ、どうしたいですか。",s:"今の気分でどうぞ。",
-   o:[["ショートにしたい",{poised:2,soft:1}],["ミディアムで似合わせたい",{soft:2,natural:1}],["長さはキープしたい",{natural:2,calm:1}],["おまかせしたい",{calm:2}]]},
-  {t:"お手入れにかけられる時間は。",s:"朝の、あなたの時間。",
-   o:[["最小限にしたい",{calm:2,poised:1}],["ほどほどに",{soft:1,natural:1,poised:1}],["しっかりかけられる",{natural:2,poised:1}]]},
-  {t:"顔まわりで、気になるところは。",s:"わからなければ「おまかせ」で。",
-   o:[["丸み・ふっくら",{poised:2,soft:1}],["エラ・輪郭",{soft:2,poised:1}],["面長・縦の印象",{natural:1,calm:1,soft:1}],["わからない／おまかせ",{calm:1,natural:1}]]}
+   o:[["ふんわり、軽やかに",{soft:2,easy:1}],
+      ["凛と、かっこよく",{poised:2}],
+      ["自然体で、飾らず",{natural:2,easy:1}],
+      ["手間なく、気楽に",{easy:2,soft:1}],
+      ["華やかに、特別感を",{radiant:2}]]},
+  {t:"髪で、いま気になることは。",s:"暮らしの中で、いちばん感じるもの。",
+   o:[["くせ・広がり",{soft:2,poised:1},"lissage"],
+      ["ダメージ・パサつき",{natural:2,soft:1},"soin"],
+      ["ボリュームがない・ぺたんこ",{poised:2,easy:1},"perm"],
+      ["特にない／ただ変えたい",{radiant:1,easy:1},null]]},
+  {t:"髪にかけられる時間・手間は。",s:"朝の、あなたの時間。",
+   o:[["できるだけ短く・楽に",{easy:2,poised:1}],
+      ["ほどほどに",{soft:1,natural:1,poised:1}],
+      ["しっかりかけて仕上げたい",{radiant:2,natural:1}]]},
+  {t:"髪を、どんな場面でいちばん見せたいですか。",s:"あなたの毎日に近いものを。",
+   o:[["毎日の暮らしの中で、自然に",{natural:2,easy:1}],
+      ["仕事・きちんとした場で",{poised:2}],
+      ["お出かけ・特別な日に",{radiant:2,soft:1}],
+      ["とにかく身軽でいたい",{easy:2,soft:1}]]},
+  {t:"色は、どうしたいですか。",s:"わからなければ「おまかせ」で。",
+   o:[["自然な範囲で、ツヤを",{natural:2}],
+      ["肌がきれいに見える色",{poised:1,natural:1}],
+      ["明るく、華やかに",{radiant:2,soft:1}],
+      ["今は変えなくていい／おまかせ",{easy:1,natural:1}]]}
 ];
 
 const el=id=>document.getElementById(id);
-let idx=0; let careCode=null; const scores={soft:0,poised:0,natural:0,calm:0}; const history=[];
+let idx=0; let careCode=null; const scores={soft:0,poised:0,natural:0,easy:0,radiant:0}; const history=[];
 
 function show(id){["intro","quiz","result"].forEach(s=>el(s).hidden=(s!==id));window.scrollTo({top:0,behavior:"smooth"});}
 function renderQ(){
@@ -245,7 +278,7 @@ function renderQ(){
 }
 function choose(opt){
   const delta=opt[1];
-  if(opt.length>2) careCode=opt[2];   // 悩みの質問だけが care を持つ
+  if(opt.length>2) careCode=opt[2];   // 悩みの質問(Q2)だけが care を持つ
   history.push(delta);
   for(const k in delta) scores[k]+=delta[k];
   idx++;
@@ -259,11 +292,17 @@ function back(){
   if(idx<=1) careCode=null;   // 悩み(Q2)まで戻ったら care を白紙に
   renderQ(); show("quiz");
 }
-function buildMenu(type){
+function menuRow(code){
+  const d=MENU[code];const row=document.createElement("div");row.className="m";
+  const price=d.pr.indexOf("¥")>=0? d.pr+"（税込）":d.pr;
+  row.innerHTML='<span class="jp">'+d.jp+'</span><span class="en">'+d.en+'</span><span class="pr">'+price+'</span>';
+  return row;
+}
+/* フルコース＝悩み由来の一手を先頭に、タイプのメニューを続ける（相反は除外・重複除去・署名カットは入口へ） */
+function buildFull(type){
   const out=[]; const banned=careCode?CONTRA[careCode]:null;
-  if(careCode) out.push(careCode);                 // 悩み由来の一手を先頭に
-  out.push("resetter");                            // plaisirの署名カット（全タイプ）
-  type.menu.forEach(c=>{ if(c!==careCode && c!==banned && !out.includes(c)) out.push(c); });
+  if(careCode) out.push(careCode);
+  type.full.forEach(c=>{ if(c!==careCode && c!==banned && c!=="resetter" && !out.includes(c)) out.push(c); });
   return out.slice(0,4);
 }
 function renderResult(){
@@ -274,10 +313,8 @@ function renderResult(){
   el("rType").textContent=t.name;
   el("rOne").textContent=t.one;
   el("rDo").textContent=t.do;
-  const m=el("rMenu"); m.innerHTML="";
-  buildMenu(t).forEach(code=>{const d=MENU[code];const row=document.createElement("div");row.className="m";
-    const price=d.pr.indexOf("¥")>=0? d.pr+"（税込）":d.pr;
-    row.innerHTML='<span class="jp">'+d.jp+'</span><span class="en">'+d.en+'</span><span class="pr">'+price+'</span>';m.appendChild(row);});
+  const entry=el("rEntry"); entry.innerHTML=""; entry.appendChild(menuRow("resetter"));  // 署名カットが入口
+  const full=el("rFull"); full.innerHTML=""; buildFull(t).forEach(c=>full.appendChild(menuRow(c)));
 }
 function reset(){idx=0;careCode=null;for(const k in scores)scores[k]=0;history.length=0;renderQ();show("quiz");}
 
@@ -285,3 +322,6 @@ el("startBtn").onclick=()=>{renderQ();show("quiz");};
 el("backBtn").onclick=back;
 el("retryBtn").onclick=reset;
 </script>
+
+</body>
+</html>
