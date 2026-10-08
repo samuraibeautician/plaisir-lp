@@ -3,6 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
+<script>
+(function(){
+  var U="https://smbwnjpnhdnsvovfoyol.supabase.co/rest/v1/lp_events",K="sb_publishable_Nc0KrXChnvzgRXsjaAztRQ_4hW5BBFJ",LP="shindan";
+  function sid(){try{var k="pl_sid",v=localStorage.getItem(k);if(!v){v=Date.now().toString(36)+Math.random().toString(36).slice(2,8);localStorage.setItem(k,v);}return v;}catch(e){return "na";}}
+  function qp(n){try{return new URLSearchParams(location.search).get(n)||"";}catch(e){return "";}}
+  function send(ev,tg){try{var body=JSON.stringify({lp:LP,event:ev,target:tg||null,session:sid(),src:qp("src"),ref:(document.referrer||"").slice(0,300)});
+    fetch(U,{method:"POST",keepalive:true,mode:"cors",headers:{"apikey":K,"Authorization":"Bearer "+K,"Content-Type":"application/json","Prefer":"return=minimal"},body:body}).catch(function(){});}catch(e){}}
+  window.__plTrack=send;
+  if(document.visibilityState!=="hidden"){send("view");}
+  document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a)return;var h=a.getAttribute("href")||"",t="";
+    if(/shindan\.html/.test(h))t="shindan";else if(/salondenet/.test(h))t="reserve";else if(/line\.me/.test(h))t="line";else if(/^tel:/.test(h))t="tel";else if(/instagram/.test(h))t="ig";
+    if(t)send("cta_click",t);},true);
+})();
+</script>
 </head>
 <body>
 <title>plaisir 似合わせ診断</title>

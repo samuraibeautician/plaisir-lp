@@ -166,6 +166,21 @@ footer .cp{margin-top:18px;font-size:11px;color:#7d6f58}
 @media(max-width:460px){.steps{grid-template-columns:1fr}.store-grid{grid-template-columns:1fr}.store-grid .a{grid-column:auto}}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
 </style>
+
+<script>
+(function(){
+  var U="https://smbwnjpnhdnsvovfoyol.supabase.co/rest/v1/lp_events",K="sb_publishable_Nc0KrXChnvzgRXsjaAztRQ_4hW5BBFJ",LP="v1";
+  function sid(){try{var k="pl_sid",v=localStorage.getItem(k);if(!v){v=Date.now().toString(36)+Math.random().toString(36).slice(2,8);localStorage.setItem(k,v);}return v;}catch(e){return "na";}}
+  function qp(n){try{return new URLSearchParams(location.search).get(n)||"";}catch(e){return "";}}
+  function send(ev,tg){try{var body=JSON.stringify({lp:LP,event:ev,target:tg||null,session:sid(),src:qp("src"),ref:(document.referrer||"").slice(0,300)});
+    fetch(U,{method:"POST",keepalive:true,mode:"cors",headers:{"apikey":K,"Authorization":"Bearer "+K,"Content-Type":"application/json","Prefer":"return=minimal"},body:body}).catch(function(){});}catch(e){}}
+  window.__plTrack=send;
+  if(document.visibilityState!=="hidden"){send("view");}
+  document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a)return;var h=a.getAttribute("href")||"",t="";
+    if(/shindan\.html/.test(h))t="shindan";else if(/salondenet/.test(h))t="reserve";else if(/line\.me/.test(h))t="line";else if(/^tel:/.test(h))t="tel";else if(/instagram/.test(h))t="ig";
+    if(t)send("cta_click",t);},true);
+})();
+</script>
 </head>
 <body>
 <header><div class="hbar">
@@ -181,7 +196,7 @@ footer .cp{margin-top:18px;font-size:11px;color:#7d6f58}
     <p class="tag">ずっと、通いたくなる。</p>
     <p class="sub">大阪・堺市の美容室 plaisir（プレジール）。お花屋さんの傍らで始まった、マンツーマン担当の小さなサロン。はじめての方は、まず1分の「似合わせ診断」から。</p>
     <div class="cta">
-      <a class="btn btn-niawase" href="https://samuraibeautician.github.io/plaisir-lp/shindan.html" target="_blank" rel="noopener">まず似合わせ診断（無料・1分）<span class="ar">&rarr;</span></a>
+      <a class="btn btn-niawase" href="https://samuraibeautician.github.io/plaisir-lp/shindan.html?src=v1" target="_blank" rel="noopener">まず似合わせ診断（無料・1分）<span class="ar">&rarr;</span></a>
       <a class="btn btn-s" href="#reserve">ご予約する</a>
     </div>
   </div>
@@ -227,7 +242,7 @@ footer .cp{margin-top:18px;font-size:11px;color:#7d6f58}
     <h3>あなたに似合うを、まず1分で。</h3>
     <p>5つの問いに答えると、plaisir からあなたへのご提案が届きます。無料・LINEで結果を受け取れます。ご来店前の"似合わせ"を、先取り。</p>
   </div>
-  <a class="btn btn-w" href="https://samuraibeautician.github.io/plaisir-lp/shindan.html" target="_blank" rel="noopener">似合わせ診断をはじめる <span class="ar">&rarr;</span></a>
+  <a class="btn btn-w" href="https://samuraibeautician.github.io/plaisir-lp/shindan.html?src=v1" target="_blank" rel="noopener">似合わせ診断をはじめる <span class="ar">&rarr;</span></a>
 </div></div>
 
 <!-- 03 ご提案 -->
@@ -294,7 +309,7 @@ footer .cp{margin-top:18px;font-size:11px;color:#7d6f58}
       <h3>ご予約はこちらから</h3>
       <p class="s">ご希望の日時で、お気軽にどうぞ。</p>
       <div class="res-btns">
-        <a class="btn btn-niawase" href="https://samuraibeautician.github.io/plaisir-lp/shindan.html" target="_blank" rel="noopener">まず似合わせ診断（無料・1分）</a>
+        <a class="btn btn-niawase" href="https://samuraibeautician.github.io/plaisir-lp/shindan.html?src=v1" target="_blank" rel="noopener">まず似合わせ診断（無料・1分）</a>
         <a class="btn btn-resv" href="https://appt.salondenet.jp/index.php?corpstr=plaisir&get=6a5e647258646c362e23665b6b6e556d5a6a715e686b3669766c6a6266" target="_blank" rel="noopener">WEBで予約する</a>
         <a class="btn btn-line" href="https://page.line.me/067myonr?openQrModal=true" target="_blank" rel="noopener">LINEで相談・予約</a>
         <a class="btn btn-tel" href="tel:0723501448">お電話（072-350-1448）</a>
@@ -307,7 +322,7 @@ footer .cp{margin-top:18px;font-size:11px;color:#7d6f58}
   <div class="fb">plaisir</div>
   <div class="fs">hair &amp; flower ・ 大阪府堺市東区白鷺町1-21-4-2F ・ 白鷺駅 徒歩1分</div>
   <div class="fl">
-    <a href="#proposal">ご提案</a><a href="https://samuraibeautician.github.io/plaisir-lp/shindan.html" target="_blank" rel="noopener">似合わせ診断</a>
+    <a href="#proposal">ご提案</a><a href="https://samuraibeautician.github.io/plaisir-lp/shindan.html?src=v1" target="_blank" rel="noopener">似合わせ診断</a>
     <a href="https://www.instagram.com/plaisirhairflower" target="_blank" rel="noopener">Instagram</a><a href="#reserve">ご予約</a>
   </div>
   <div class="cp">© 2026 plaisir hair &amp; flower</div>
