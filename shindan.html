@@ -272,7 +272,7 @@ const QUESTIONS=[
 ];
 
 const el=id=>document.getElementById(id);
-let idx=0; let careCode=null; const scores={soft:0,poised:0,natural:0,easy:0,radiant:0}; const history=[];
+let idx=0; let careCode=null; const scores={soft:0,poised:0,natural:0,easy:0,radiant:0}; const history=[]; let _completeFired=false;
 
 function show(id){["intro","quiz","result"].forEach(s=>el(s).hidden=(s!==id));window.scrollTo({top:0,behavior:"smooth"});}
 function renderQ(){
@@ -324,6 +324,7 @@ function renderResult(){
   let best="soft",bv=-1;
   for(const k in scores){ if(scores[k]>bv){bv=scores[k];best=k;} }
   const t=TYPES[best];
+  if(!_completeFired){_completeFired=true;try{if(window.__plTrack)window.__plTrack("shindan_complete",best);}catch(e){}}
   el("rEn").textContent=t.en;
   el("rType").textContent=t.name;
   el("rOne").textContent=t.one;
