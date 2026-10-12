@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>plaisir</title>
+<script>
+/* plaisir LP 50/50 スプリッター。1本のURLに来た訪問者をアームへ安定割り振り＆同一DBへ記録。
+   ビーコンは V1/V2/診断 と同一方式(エンドポイント・キー・sid・send)を踏襲（二重に作らない）。
+   将来アームを足すときは ARMS に1行追加するだけ（均等割り）。aicmo を3つ目に入れても他は無改変。 */
+(function(){
+  var U="https://smbwnjpnhdnsvovfoyol.supabase.co/rest/v1/lp_events",K="sb_publishable_Nc0KrXChnvzgRXsjaAztRQ_4hW5BBFJ",LP="go";
+  var ARMS=[{name:"v1",url:"index.html"},{name:"v2",url:"v2/index.html"}];
+  function sid(){try{var k="pl_sid",v=localStorage.getItem(k);if(!v){v=Date.now().toString(36)+Math.random().toString(36).slice(2,8);localStorage.setItem(k,v);}return v;}catch(e){return "na";}}
+  function qp(n){try{return new URLSearchParams(location.search).get(n)||"";}catch(e){return "";}}
+  function send(ev,tg,cb){try{var body=JSON.stringify({lp:LP,event:ev,target:tg||null,session:sid(),src:qp("src"),ref:(document.referrer||"").slice(0,300)});
+    fetch(U,{method:"POST",keepalive:true,mode:"cors",headers:{"apikey":K,"Authorization":"Bearer "+K,"Content-Type":"application/json","Prefer":"return=minimal"},body:body}).then(function(){cb&&cb();},function(){cb&&cb();});}catch(e){cb&&cb();}}
+  function isArm(v){for(var i=0;i<ARMS.length;i++){if(ARMS[i].name===v)return true;}return false;}
+  function pick(){return ARMS[Math.floor(Math.random()*ARMS.length)].name;}
+  function arm(){try{var k="pl_arm",v=localStorage.getItem(k);if(!isArm(v)){v=pick();localStorage.setItem(k,v);}return v;}catch(e){return pick();}}
+  function urlOf(name){var u=ARMS[0].url;for(var i=0;i<ARMS.length;i++){if(ARMS[i].name===name)u=ARMS[i].url;}return u+(location.search||"");}
+  var a=arm();
+  var done=false;function go(){if(done)return;done=true;location.replace(urlOf(a));}
+  send("assign",a,go);        /* 記録してから飛ぶ（keepaliveで中断されても届く） */
+  setTimeout(go,1200);        /* ビーコン遅延/失敗でも必ず着地させる保険 */
+})();
+</script>
+<style>html,body{margin:0;height:100%}body{background:#f6efe8;color:#9a7a63;font-family:"Zen Kaku Gothic New",system-ui,sans-serif;font-weight:300}
+.c{min-height:100vh;display:flex;align-items:center;justify-content:center;letter-spacing:.3em;font-size:14px}</style>
+</head>
+<body><div class="c">plaisir</div></body>
+</html>
