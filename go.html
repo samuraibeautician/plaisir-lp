@@ -11,7 +11,7 @@
    将来アームを足すときは ARMS に1行追加するだけ（均等割り）。aicmo を3つ目に入れても他は無改変。 */
 (function(){
   var U="https://smbwnjpnhdnsvovfoyol.supabase.co/rest/v1/lp_events",K="sb_publishable_Nc0KrXChnvzgRXsjaAztRQ_4hW5BBFJ",LP="go";
-  var ARMS=[{name:"v1",url:"index.html"},{name:"v2",url:"v2/index.html"},{name:"v3",url:"terracotta/index.html"}];
+  var ARMS=[{name:"v1",url:"index.html"},{name:"v2",url:"v2/index.html"},{name:"v3",url:"v3/index.html"}];
   function sid(){try{var k="pl_sid",v=localStorage.getItem(k);if(!v){v=Date.now().toString(36)+Math.random().toString(36).slice(2,8);localStorage.setItem(k,v);}return v;}catch(e){return "na";}}
   function qp(n){try{return new URLSearchParams(location.search).get(n)||"";}catch(e){return "";}}
   function send(ev,tg,cb){try{var body=JSON.stringify({lp:LP,event:ev,target:tg||null,session:sid(),src:qp("src"),ref:(document.referrer||"").slice(0,300)});
