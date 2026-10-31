@@ -92,6 +92,15 @@ h2.sec-title{font-size:clamp(23px,3.7vw,31px);margin-bottom:6px}
 .step p{color:var(--ink-soft);font-size:12.5px;line-height:1.85}
 
 .shindan-band{background:linear-gradient(120deg,var(--rose),#b4745c);color:#fff}
+.fit{background:var(--cream)}
+.fit .sec-eyebrow{margin-bottom:14px}
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:600px){.fit-grid{grid-template-columns:1fr}}
+.fit-col{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.fit-col--no{background:transparent;border-style:dashed}
+.fit-h{font-weight:700;color:var(--gold-deep);margin-bottom:8px;font-size:15px}
+.fit-col--no .fit-h{color:var(--muted)}
+.fit-col p{color:var(--ink-soft);font-size:14.5px;line-height:1.85}
 .shindan-in{display:flex;align-items:center;gap:26px;flex-wrap:wrap;padding-block:42px}
 .shindan-in .txt{flex:1;min-width:250px}
 .shindan-in .ey{font-family:var(--deco);font-style:italic;font-size:16px;color:#fbe7df;margin-bottom:6px}
@@ -194,7 +203,7 @@ footer .cp{margin-top:18px;font-size:11px;color:#7d6f58}
     <p class="ey">A little salon beside a flower shop.</p>
     <div class="brand">plaisir<small>HAIR &amp; FLOWER</small></div>
     <p class="tag">ずっと、通いたくなる。</p>
-    <p class="sub">大阪・堺市の美容室 plaisir（プレジール）。お花屋さんの傍らで始まった、マンツーマン担当の小さなサロン。はじめての方は、まず1分の「似合わせ診断」から。</p>
+    <p class="sub">大阪・堺市の美容室 plaisir（プレジール）。お花屋さんの傍らで始まった、オーナーひとり担当の小さなサロン。通い続けてくださる方が9割（過去2年・リピート89.7%）。はじめての方は、まず1分の「似合わせ診断」から。</p>
     <div class="cta">
       <a class="btn btn-niawase" href="https://samuraibeautician.github.io/plaisir-lp/shindan.html?src=v1" target="_blank" rel="noopener">まず似合わせ診断（無料・1分）<span class="ar">&rarr;</span></a>
       <a class="btn btn-s" href="#reserve">ご予約する</a>
@@ -235,6 +244,21 @@ footer .cp{margin-top:18px;font-size:11px;color:#7d6f58}
   </div>
 </div></section>
 
+<!-- 合う人・合わない人 -->
+<section class="fit"><div class="wrap">
+  <div class="sec-eyebrow"><span class="no">—</span><span class="en">Is plaisir right for you?</span></div>
+  <div class="fit-grid">
+    <div class="fit-col">
+      <p class="fit-h">plaisir が合う方</p>
+      <p>最初から最後まで、同じ手に任せたい方。流行より、自分に長く似合う形がほしい方。髪を“直す”でなく“育てる”に付き合える方。</p>
+    </div>
+    <div class="fit-col fit-col--no">
+      <p class="fit-h">合わないかもしれない方</p>
+      <p>毎回担当を選びたい方、とにかく最短・最安を求める方、来るたび大きく変えたい方。それは、わたしひとりの店では叶えにくいことです。</p>
+    </div>
+  </div>
+</div></section>
+
 <!-- 診断バンド -->
 <div class="shindan-band"><div class="wrap shindan-in">
   <div class="txt">
@@ -267,7 +291,7 @@ footer .cp{margin-top:18px;font-size:11px;color:#7d6f58}
       <p class="name">Yu-ki Kakigahara</p>
       <h3>切ることを、26年つづけています。</h3>
       <p class="role">垣ヶ原 裕喜 ／ スタイリスト</p>
-      <p>お一人おひとりと向き合い、カウンセリングから仕上げ、ご自宅での再現まで、最初から最後までわたしが担当します。髪質も暮らしもきいてから、あなたに似合う一つの形を、一緒に見つけます。</p>
+      <p>お花屋さんの傍らで始めた、派手さのない小さなサロンです。だから、最初から最後までわたしひとりが担当します。26年、切ることだけを続けてきました。いまも通い続けてくださる方が9割（過去2年・リピート89.7%／6回以上のお客様が過半）。カウンセリングから仕上げ、ご自宅での再現まで、あなたに似合う一つの形を、一緒に見つけます。</p>
     </div>
   </div>
 </div></section>
